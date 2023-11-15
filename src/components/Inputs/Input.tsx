@@ -2,14 +2,15 @@
 
 import clsx from "clsx"
 import { FC } from "react"
-import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
+import { FieldErrors, UseFormRegister } from 'react-hook-form'
+import { FieldsId, FormFields } from "src/types"
 
 interface InputProps {
     label: string,
-    id: string,
+    id: FieldsId,
     type?: string,
-    required?: string,
-    register: UseFormRegister<FieldValues>,
+    required?: boolean,
+    register: UseFormRegister<FormFields>,
     errors: FieldErrors,
     disabled?: boolean
 }
