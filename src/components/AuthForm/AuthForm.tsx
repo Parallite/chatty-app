@@ -1,9 +1,9 @@
 'use client'
 
 import { useCallback, useState } from "react"
-import { SubmitHandler, useForm } from "react-hook-form"
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 
-import { FormFields, Variant } from "src/types"
+import { Variant } from "src/constants"
 import { Input } from "@/components/Inputs"
 import { Button } from "@/components/Button"
 import { AuthSocialButtons } from "@/components/AuthSocialButtons"
@@ -28,7 +28,7 @@ export const AuthForm = () => {
         formState: {
             errors
         }
-    } = useForm<FormFields>({
+    } = useForm<FieldValues>({
         defaultValues: {
             name: '',
             email: '',
@@ -36,18 +36,14 @@ export const AuthForm = () => {
         }
     })
 
-    const onSubmit: SubmitHandler<FormFields> = (data) => {
+    const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
-        
         if (variant === "REGISTER") {
-            console.log(data);
-            
             //Axios Register
         }
 
         if (variant === "LOGIN") {
             //NextAuth SignIn
-            console.log(data);
         }
     }
 
