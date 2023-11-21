@@ -9,6 +9,7 @@ import { Button } from "@/components/Button"
 import { AuthSocialButtons } from "@/components/AuthSocialButtons"
 import { BsGithub } from 'react-icons/bs'
 import { BsGoogle } from 'react-icons/bs'
+import axios from "axios"
 
 export const AuthForm = () => {
     const [variant, setVariant] = useState<Variant>('LOGIN')
@@ -41,19 +42,16 @@ export const AuthForm = () => {
         
         if (variant === "REGISTER") {
             console.log(data);
-            
-            //Axios Register
+            axios.post('/api/register', data)
         }
 
         if (variant === "LOGIN") {
-            //NextAuth SignIn
             console.log(data);
         }
     }
 
     const socialAction = (action: string) => {
         setIsLoading(true)
-        // NextAuth social sign in
     }
 
     return (
