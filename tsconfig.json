@@ -20,7 +20,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/app": ["./src/app/*"],
+      "@/app/*": ["./src/app/*"],
       "@/components/*": ["./src/components/*"],
       "@/images/*": ["./public/images/*"],
       "@/fonts/*": ["./public/fonts/*"],
