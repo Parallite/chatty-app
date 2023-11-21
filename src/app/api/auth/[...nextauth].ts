@@ -10,7 +10,6 @@ import prisma from '@/app/libs/prismadb'
 
 export const authOptions: AuthOptions = {
     adapter: PrismaAdapter(prisma),
-    // Configure one or more authentication providers
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_ID as string,
@@ -47,7 +46,6 @@ export const authOptions: AuthOptions = {
                 return user
             },
         })
-        // ...add more providers here
     ],
     debug: process.env.NODE_ENV === 'development',
     session: {
