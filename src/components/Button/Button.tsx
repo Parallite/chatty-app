@@ -38,12 +38,13 @@ export const Button: FC<ButtonProps> = ({
                 focus-visible:outline
                 focus-visible:outline-2
                 focus-visible:outline-offset-2
+                text-white-primary
             `,
                 disabled && "opacity-50 cursor-default",
                 fullWidth && "w-full",
                 secondary ? "text-gray-900" : "text-white",
                 danger && "bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600",
-                !secondary && !danger && "bg-blue-800 hover:bg-blue-800 focus-visible:outline-blue-900"
+                !secondary && !danger && "bg-blue-dark hover:ring-white-primary hover:bg-blue-dark hover:border-blue-dark hover:shadow-blue-dark hover:shadow-lg focus-visible:outline-bg-blue-middle"
             )}
         >
             {children}

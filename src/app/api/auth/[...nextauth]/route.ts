@@ -7,7 +7,6 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 
 import prisma from '@/app/libs/prismadb'
 
-
 export const authOptions: AuthOptions = {
     adapter: PrismaAdapter(prisma),
     providers: [
@@ -27,6 +26,7 @@ export const authOptions: AuthOptions = {
             },
             async authorize(credentials, _) {
                 if (!credentials?.email || !credentials?.password) throw new Error('Invalid Credentials');
+                console.log('authorize func');
 
                 const user = await prisma.user.findUnique({
                     where: {
@@ -42,7 +42,7 @@ export const authOptions: AuthOptions = {
                 );
 
                 if (!isCorrectPassword) throw new Error('Invalid credentials');
-
+                console.log('authorize func', user);
                 return user
             },
         })
@@ -55,7 +55,5 @@ export const authOptions: AuthOptions = {
 }
 
 const handler = NextAuth(authOptions)
-
-export default NextAuth(authOptions)
 
 export { handler as GET, handler as POST }
