@@ -1,9 +1,7 @@
-'use client'
-
 import clsx from "clsx"
 import { FC } from "react"
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
-import { FieldsId, FormFields } from "src/types"
+import { FieldsId, FormFields } from "@/app/types"
 
 import { BsFillPersonFill } from "react-icons/bs";
 import { BsKeyFill } from "react-icons/bs";
@@ -60,7 +58,7 @@ export const Input: FC<InputProps> = ({
                     type={type}
                     autoComplete={id}
                     disabled={disabled}
-                    {...register(id, { required })}
+                    {...register(id, { required } )}
                     className={clsx(`
                         form-input
                         block
