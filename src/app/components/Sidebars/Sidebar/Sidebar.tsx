@@ -13,7 +13,7 @@ export const Sidebar: FC<SidebarProps> = async ({children}) => {
         <div className='h-full bg-neutral-50 rounded-3xl'>
             <DesktopSidebar currentUser={currentUser!}/>
             <MobileFooter />
-            <main className='lg:pl-20 h-full rounded-3xl border-double border-4 border-blue-dark'>
+            <main className='h-full relative rounded-3xl border-double border-4 border-blue-dark'>
                 {children}
             </main>
         </div>
