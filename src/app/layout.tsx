@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='bg-bg-gradient h-full'>
+        <div className='bg-bg-gradient h-full lg:p-8'>
           <AuthContext>
             <ToasterContext />
             {children}

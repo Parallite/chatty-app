@@ -10,14 +10,20 @@ const config: Config = {
     extend: {
       colors: {
         blue: {
-          dark: '#535878',
-          middle: '#9DB0CE',
-          light: '#B8D8E3'
+          // dark: '#535878',
+          // middle: '#9DB0CE',
+          // light: '#B8D8E3'
+          dark: '#1f243b',
+          middle: '#5f6b7e',
+          light: '#8aa1a8'
         },
         pink: {
-          dark: '#FEE1DD',
-          middle: '#E9C2C5',
-          light: '#CEA0AA'
+          // dark: '#FEE1DD',
+          // middle: '#E9C2C5',
+          // light: '#CEA0AA'
+          dark: '#9d7b82',
+          middle: '#c1a4a6',
+          light: '#ebd1cd'
         },
         white: {
           primary: '#f4f4f5'
@@ -45,7 +51,8 @@ const config: Config = {
       },
       backgroundImage: {
         "bg-gradient":
-          "linear-gradient(90deg, rgba(83,88,120,1) 0%, rgba(157,176,206,1) 20%, rgba(184,216,227,1) 40%, rgba(254,225,221,1) 60%, rgba(233,194,197,1) 80%, rgba(206,160,170,1) 100%)",
+          "linear-gradient(90deg, #1f243b 0%, #5f6b7e 20%, #8aa1a8 40%, #ebd1cd 60%, #c1a4a6 80%, #9d7b82 100%)",
+        // "linear-gradient(90deg, rgba(83,88,120,1) 0%, rgba(157,176,206,1) 20%, rgba(184,216,227,1) 40%, rgba(254,225,221,1) 60%, rgba(233,194,197,1) 80%, rgba(206,160,170,1) 100%)",
         // 'bg-img-1': "url('/img-1.png')",
         // 'bg-img-2': "url('/img-2.png')",
         // 'feature-bg': "url('/feature-bg.png')",
