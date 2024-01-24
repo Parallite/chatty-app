@@ -14,9 +14,17 @@ export const UserBox: FC<UserBoxProps> = ({ data }) => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const handleClick = () => {
-       
-    }
+    const handleClick = useCallback(() => {
+        setIsLoading(true)
+
+        axios.post('/api/conversations', {
+            userId: data.id
+        })
+        .then((data) => {
+            router.push(`/conversation/${data.data.id}`)
+        })
+        .finally(() => setIsLoading(false))
+    }, [data, router])
 
     return (
         <div

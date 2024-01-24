@@ -1,3 +1,4 @@
+import { Conversation, Message, User } from "@prisma/client";
 
 // AuthForm
 
@@ -10,3 +11,15 @@ export interface FormFields {
 }
 
 export type FieldsId = "name" | "email" | "password"
+
+//Messages
+
+export type FullMessageType = Message & {
+    sender: User,
+    seen: User[]
+};
+
+export type FullConversationType = Conversation & {
+    users: User[];
+    messages: FullMessageType[]
+};
