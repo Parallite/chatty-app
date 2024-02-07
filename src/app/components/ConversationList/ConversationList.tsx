@@ -3,10 +3,11 @@
 import { useConversation } from '@/app/hooks/useConversation';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import { MdOutlineGroupAdd } from 'react-icons/md'
 import React, { FC, useState } from 'react'
 import { ConversationBox } from '@/components/ConversationBox';
 import { FullConversationType } from '@/app/types';
+import { LuUserPlus2 } from "react-icons/lu";
+import { BlobsSecondary } from '@/components/BlobsSecondary';
 
 interface ConversationListProps {
     initialItems: FullConversationType[];
@@ -21,19 +22,22 @@ export const ConversationList: FC<ConversationListProps> = ({
 
     return (
         <aside
-            className={clsx(`absolute inset-y-0 pb-20 lg:pb-0 lg:left-10 lg:w-80 lg:block overflow-y-auto border-r
-            border-blue-middle block w-full left-0
+            className={clsx(`bg-white shadow-inner shadow-purple-middle lg:rounded-xl lg:w-96 inset-y-0 pb-20 lg:pb-0 lg:ml-20 lg:left-10 lg:block overflow-y-auto 
+        block w-full left-0
             `,
                 isOpen ? 'hidden' : 'block w-full left-0'
             )}
         >
-            <div className='px-5'>
-                <div className='flex justify-between mb-4 pt-4'>
-                    <div className='text-2xl font-bold text-bg-primary'>
-                        All messages
+            <div className='px-2'>
+                <div className='flex justify-between mb-4 px-2 py-4 mt-2 bg-orange-middle rounded-lg shadow-md shadow-orange-dark relative overflow-hidden'>
+                    <div>
+                    <div className='text-2xl font-bold text-white'>
+                        Messages
                     </div>
-                    <div className='flex items-center p-1 rounded-full bg-gray-100 text-bg-primary cursor-pointer hover:text-blue-middle transition'>
-                        <MdOutlineGroupAdd size={20} />
+                    <BlobsSecondary />
+                    </div>
+                    <div className='flex items-center justify-center p-1 w-8 h-8 rounded-full text-white cursor-pointer hover:text-white hover:bg-purple-middle hover:shadow-md hover:shadow-purple-middle transition'>
+                        <LuUserPlus2 size={20} />
                     </div>
                 </div>
                 { items.map((item) => (

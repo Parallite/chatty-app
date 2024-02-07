@@ -14,8 +14,8 @@ export const AuthSocialButtons: FC<AuthSocialButtonsProps> = ({
     <button
     type='button'
     onClick={onClick}
-    className='inline-flex w-full justify-center rounded-md bg-white-primary px-4 py-2 text-blue-dark shadow-sm
-    ring-1 ring-inset ring-blue-middle hover:ring-blue-dark hover:bg-blue-dark hover:border-blue-dark hover:shadow-blue-dark hover:shadow-lg hover:text-white-primary focus:outline-offset-0'
+    className='inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-purple-middle
+    ring-1 ring-inset ring-purple-middle hover:ring-white hover:bg-orange-middle hover:text-white focus:outline-offset-0'
     >
         <Icon />
     </button>

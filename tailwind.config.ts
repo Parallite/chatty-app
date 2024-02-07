@@ -9,45 +9,26 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        green: {
+          middle: '#72CEC1',
+          light: '#C2E8E4'
+        },
+        orange: {
+          dark: '#E88468',
+          middle: '#FF7F5D',
+          light: '#D4A5B1'
+        },
         blue: {
-          // dark: '#535878',
-          // middle: '#9DB0CE',
-          // light: '#B8D8E3'
-          dark: '#1f243b',
-          middle: '#5f6b7e',
-          light: '#8aa1a8'
+          dark: '#434A75',
+          middle: '#40bCE1',
+          light: '#B6E5F3'
         },
-        pink: {
-          // dark: '#FEE1DD',
-          // middle: '#E9C2C5',
-          // light: '#CEA0AA'
-          dark: '#9d7b82',
-          middle: '#c1a4a6',
-          light: '#ebd1cd'
+        purple: {
+          middle: '#4849A1',
+          dark: '#27295e'
         },
-        white: {
-          primary: '#f4f4f5'
-        }
-        // green: {
-        //   50: '#30AF5B',
-        //   90: '#292C27',
-        // },
-        // gray: {
-        //   10: '#EEEEEE',
-        //   20: '#A2A2A2',
-        //   30: '#7B7B7B',
-        //   50: '#585858',
-        //   90: '#141414',
-        // },
-        // orange: {
-        //   50: '#FF814C',
-        // },
-        // blue: {
-        //   70: '#021639',
-        // },
-        // yellow: {
-        //   50: '#FEC601',
-        // },
+        'white': '#F6F6F6',
+        'red': "#E94C89"
       },
       backgroundImage: {
         "bg-gradient":

@@ -35,11 +35,11 @@ export const MobileItem: FC<MobileItemsProps> = ({
                 w-full
                 justify-center
                 p-4
-                text-white-primary
-                hover:bg-white-primary
-                hover:text-blue-dark
+                text-white
+                hover:bg-white
+                hover:text-purple-middle
             `,
-                active && "bg-blue-middle text-blue-dark w-full"
+                active && "bg-blue-middle text-purple-middle w-full"
             )}
         >
             <Icon className="h-6 w-6"/>

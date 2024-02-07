@@ -3,16 +3,17 @@
 import { useCallback, useEffect, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
-
+import { signIn, useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
 import axios from "axios"
+import { BsGithub } from 'react-icons/bs'
+import { BsGoogle } from 'react-icons/bs'
+
 import { FormFields, Variant } from "@/app/types"
 import { Input } from "@/components/Inputs"
 import { Button } from "@/components/Button"
+import { AuthLogo } from "@/components/AuthLogo"
 import { AuthSocialButtons } from "@/components/AuthSocialButtons"
-import { BsGithub } from 'react-icons/bs'
-import { BsGoogle } from 'react-icons/bs'
-import { signIn, useSession } from "next-auth/react"
-import { useRouter } from "next/navigation"
 
 export const AuthForm = () => {
     const session = useSession();
@@ -96,9 +97,10 @@ export const AuthForm = () => {
     }
 
     return (
-        <div className="mt-4 sm:mx-auto sm:w-full sm:max-w-md bg-white-primary rounded-3xl border-double border-4 border-blue-dark">
+        <div className="mt-4 sm:mx-auto sm:w-full sm:max-w-md bg-white rounded-3xl relative z-10">
+            <AuthLogo />
             <div className="px-4 py-8 sm:rounded-lg sm:px-10">
-                <h2 className="mb-8 text-center text-3xl font-bold tracking-tight text-blue-dark">
+                <h2 className="mb-8 text-center text-3xl font-bold tracking-tight text-purple-middle">
                     {variant === "LOGIN" ? "Login" : "Sign up"}
                 </h2>
                 <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
@@ -144,11 +146,11 @@ export const AuthForm = () => {
                 <div className="mt-6">
                     <div className="relative">
                         <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-blue-middle" />
+                            <div className="w-full border-t border-purple-middle" />
                         </div>
                         <div>
                             <div className="relative flex justify-center text-sm">
-                                <span className="bg-white-primary px-2 text-blue-dark">Or continue with</span>
+                                <span className="bg-white px-2 text-purple-middle">Or continue with</span>
                             </div>
                         </div>
                     </div>
@@ -163,18 +165,18 @@ export const AuthForm = () => {
                         />
                     </div>
                 </div>
-                <div className="flex gap-2 justify-center text-sm mt-6 px-2 text-blue-dark">
+                <div className="flex gap-2 justify-center text-sm mt-6 px-2 text-purple-middle">
                     <div>
                         {variant === "LOGIN" ? "Dont have account?" : 'Already have an account?'}
                     </div>
                     <div
                         onClick={toggleVariant}
-                        className="underline cursor-pointer"
+                        className="underline cursor-pointer text-orange-middle hover:text-orange-light"
                     >
                         {variant === "LOGIN" ? "Create now" : "Login"}
                     </div>
                 </div>
-            </div>
+            </div>  
         </div>
     )
 }

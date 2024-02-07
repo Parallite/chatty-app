@@ -10,10 +10,10 @@ interface SidebarProps {
 export const Sidebar: FC<SidebarProps> = async ({children}) => {
     const currentUser = await getCurrentUser()
     return (
-        <div className='h-full bg-neutral-50 rounded-3xl'>
+        <div className='h-full'>
             <DesktopSidebar currentUser={currentUser!}/>
             <MobileFooter />
-            <main className='h-full relative rounded-3xl border-double border-4 border-blue-dark'>
+            <main className='h-full lg:p-4'>
                 {children}
             </main>
         </div>

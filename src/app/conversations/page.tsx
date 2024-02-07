@@ -10,7 +10,7 @@ const Home = () => {
     return (
         <div
             className={clsx(
-                "lg:pl-[360px] h-full lg:block",
+                "h-full w-full lg:block bg-white lg:rounded-xl shadow-inner shadow-purple-middle",
                 isOpen ? "block" : "hidden"
             )}
                     >

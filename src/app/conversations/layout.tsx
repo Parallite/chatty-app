@@ -10,7 +10,7 @@ export default async function ConversationsLayout({
     const conversations = await getConversations();
     return (
         <Sidebar>
-            <div className="h-full">
+            <div className="h-full flex justify-center gap-4">
                 <ConversationList 
                     initialItems={conversations}
                 />
