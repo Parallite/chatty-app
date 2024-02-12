@@ -15,7 +15,7 @@ export const AuthLogo = () => {
                         <div className="w-4 h-4 bg-blue-light rounded-full"></div>
                     </div>
                     <div className="flex items-center">
-                        <span className="text-purple-middle uppercase text-5xl block">Chatty</span>
+                        <span className="text-purple-middle uppercase text-4xl block">Chatty</span>
                     </div>
                 </div>
             </div>
