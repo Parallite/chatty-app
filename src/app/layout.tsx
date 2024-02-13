@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='bg-purple-dark h-full overflow-hidden relative'>
+        <div className='bg-purple-dark h-full overflow-hidden fixed w-full'>
           <AuthContext>
             <ToasterContext />
             {children}
