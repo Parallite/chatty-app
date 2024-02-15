@@ -29,6 +29,7 @@ export const Button: FC<ButtonProps> = ({
             disabled={disabled}
             className={clsx(`
                 flex
+                min-w-[100px]
                 justify-center
                 rounded-md
                 px-3
@@ -42,8 +43,8 @@ export const Button: FC<ButtonProps> = ({
             `,
                 disabled && "opacity-50 cursor-default",
                 fullWidth && "w-full",
-                secondary ? "text-gray-900" : "text-white",
-                danger && "bg-red hover:bg-orange-light focus-visible:outline-orange-middle",
+                secondary ? "bg-blue-middle hover:bg-orange-middle" : "text-white",
+                danger && "bg-red hover:bg-orange-middle focus-visible:outline-orange-middle",
                 !secondary && !danger && "bg-purple-middle hover:ring-white hover:bg-orange-middle hover:border-blue-dark hover:shadow-blue-light focus-visible:outline-bg-blue-middle"
             )}
         >

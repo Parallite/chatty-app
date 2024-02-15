@@ -1,10 +1,11 @@
 import { Conversation, Message, User } from "@prisma/client";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 
 // AuthForm
 
 export type Variant = 'LOGIN' | 'REGISTER'
 
-export interface FormFields {
+export interface AuthFormFields extends FieldValues {
     name: string,
     email: string,
     password: string
@@ -12,7 +13,9 @@ export interface FormFields {
 
 export type FieldsId = "name" | "email" | "password"
 
-//Messages
+export type InputRegister = UseFormRegister<AuthFormFields> | UseFormRegister<SettingsFormFields> | UseFormRegister<MessageFormFields>
+
+// Messages
 
 export type FullMessageType = Message & {
     sender: User,
@@ -23,3 +26,14 @@ export type FullConversationType = Conversation & {
     users: User[];
     messages: FullMessageType[]
 };
+
+export interface MessageFormFields extends FieldValues {
+    message: string,
+}
+
+// Settings
+
+export interface SettingsFormFields extends FieldValues {
+    name: string,
+    image: string
+}

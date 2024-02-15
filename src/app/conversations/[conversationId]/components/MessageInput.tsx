@@ -1,14 +1,13 @@
-'use client'
-
+import { InputRegister } from "@/app/types";
 import { FC } from "react";
-import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { FieldErrors } from "react-hook-form";
 
 interface MessageInputProps {
     placeholder?: string;
     id: string;
     type?: string;
     required?: boolean;
-    register: UseFormRegister<FieldValues>;
+    register: InputRegister;
     errors: FieldErrors
 }
 

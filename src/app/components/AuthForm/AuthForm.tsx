@@ -9,7 +9,7 @@ import axios from "axios"
 import { BsGithub } from 'react-icons/bs'
 import { BsGoogle } from 'react-icons/bs'
 
-import { FormFields, Variant } from "@/app/types"
+import { AuthFormFields, Variant } from "@/app/types"
 import { Input } from "@/components/Inputs"
 import { Button } from "@/components/Button"
 import { AuthLogo } from "@/components/AuthLogo"
@@ -41,7 +41,7 @@ export const AuthForm = () => {
         formState: {
             errors
         }
-    } = useForm<FormFields>({
+    } = useForm<AuthFormFields>({
         defaultValues: {
             name: '',
             email: '',
@@ -49,7 +49,7 @@ export const AuthForm = () => {
         }
     })
 
-    const onSubmit: SubmitHandler<FormFields> = (data) => {
+    const onSubmit: SubmitHandler<AuthFormFields> = (data) => {
         setIsLoading(true);
 
         if (variant === "REGISTER") {

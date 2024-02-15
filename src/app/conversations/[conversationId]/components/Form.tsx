@@ -7,6 +7,7 @@ import { HiPaperAirplane, HiPhoto } from "react-icons/hi2";
 import { CldUploadButton } from 'next-cloudinary';
 
 import { MessageInput } from "./MessageInput";
+import { MessageFormFields } from "@/app/types";
 
 export const Form = () => {
     const { conversationId } = useConversation();
@@ -18,13 +19,13 @@ export const Form = () => {
         formState: {
             errors
         }
-    } = useForm<FieldValues>({
+    } = useForm<MessageFormFields>({
         defaultValues: {
             message: ''
         }
     })
 
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const onSubmit: SubmitHandler<MessageFormFields> = (data) => {
         setValue('message', '', { shouldValidate: true });
 
         axios.post('/api/messages', {
