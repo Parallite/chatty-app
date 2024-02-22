@@ -13,7 +13,11 @@ export interface AuthFormFields extends FieldValues {
 
 export type FieldsId = "name" | "email" | "password"
 
-export type InputRegister = UseFormRegister<AuthFormFields> | UseFormRegister<SettingsFormFields> | UseFormRegister<MessageFormFields>
+export type InputRegister =
+    UseFormRegister<AuthFormFields> |
+    UseFormRegister<SettingsFormFields> |
+    UseFormRegister<MessageFormFields> |
+    UseFormRegister<GroupChatFields>
 
 // Messages
 
@@ -36,4 +40,11 @@ export interface MessageFormFields extends FieldValues {
 export interface SettingsFormFields extends FieldValues {
     name: string,
     image: string
+}
+
+// Group chat
+
+export interface GroupChatFields extends FieldValues {
+    name: '',
+    members: []
 }
