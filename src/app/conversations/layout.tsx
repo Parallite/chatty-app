@@ -1,5 +1,5 @@
 import { Sidebar } from "@/components/Sidebars/Sidebar"
-import { ConversationList } from "@/components/ConversationList"
+import { ConversationList } from "@/app/conversations/components/ConversationList"
 import { getConversations } from "../actions/getConversations"
 import { getUsers } from "../actions/getUsers";
 
@@ -13,7 +13,7 @@ export default async function ConversationsLayout({
 
     return (
         <Sidebar>
-            <div className="h-full flex justify-center gap-4">
+            <div className="h-full flex justify-start gap-4">
                 <ConversationList 
                     users={users}
                     initialItems={conversations}

@@ -3,8 +3,8 @@
 import { useConversation } from '@/app/hooks/useConversation';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import React, { FC, useState } from 'react'
-import { ConversationBox } from '@/components/ConversationBox';
+import React, { FC, useState } from 'react';
+import { ConversationBox } from '@/app/conversations/components/ConversationBox';
 import { FullConversationType } from '@/app/types';
 import { LuUserPlus2 } from "react-icons/lu";
 import { BlobsSecondary } from '@/components/BlobsSecondary';
@@ -24,6 +24,7 @@ export const ConversationList: FC<ConversationListProps> = ({
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
     const router = useRouter();
     const { conversationId, isOpen } = useConversation();
+    
 
     return (
         <>
@@ -33,8 +34,14 @@ export const ConversationList: FC<ConversationListProps> = ({
                 onClose={() => setIsModalOpen(false)}
             />
             <aside
-                className={clsx(`bg-white shadow-inner shadow-purple-middle lg:rounded-xl lg:w-96 inset-y-0 pb-20 lg:pb-0 lg:ml-20 lg:left-10 lg:block overflow-y-auto 
-            block w-full left-0
+                className={clsx(`bg-white shadow-inner shadow-purple-middle lg:rounded-xl lg:block overflow-y-auto block 
+                left-0
+                lg:w-96 
+                inset-y-0 
+                pb-20 
+                lg:pb-0 
+                lg:ml-20 
+                lg:left-10
             `,
                     isOpen ? 'hidden' : 'block w-full left-0'
                 )}
