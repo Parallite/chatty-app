@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { ToasterContext } from '@/app/context/ToasterContext'
 import './globals.css'
+import AuthContext from '@/app/context/AuthContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Chatter',
-  description: 'Chatter app online messenger application',
+  title: 'Chatty',
+  description: 'Chatty app online messenger application',
 }
 
 export default function RootLayout({
@@ -16,7 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className='bg-purple-dark h-full overflow-hidden fixed w-full'>
+          <AuthContext>
+            <ToasterContext />
+            {children}
+          </AuthContext>
+        </div>
+      </body>
     </html>
   )
 }
