@@ -3,13 +3,16 @@
 import { useConversation } from '@/app/hooks/useConversation';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { ConversationBox } from '@/app/conversations/components/ConversationBox';
 import { FullConversationType } from '@/app/types';
 import { LuUserPlus2 } from "react-icons/lu";
 import { BlobsSecondary } from '@/components/BlobsSecondary';
 import { GroupChatModal } from '@/app/conversations/[conversationId]/components/GroupChatModal';
 import { User } from '@prisma/client';
+import { useSession } from 'next-auth/react';
+import { pusherClient } from '@/app/libs/pusher';
+import { find } from 'lodash';
 
 interface ConversationListProps {
     initialItems: FullConversationType[];
@@ -20,11 +23,40 @@ export const ConversationList: FC<ConversationListProps> = ({
     initialItems,
     users
 }) => {
+    const session = useSession();
     const [items, setItems] = useState(initialItems);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
     const router = useRouter();
     const { conversationId, isOpen } = useConversation();
     
+    const pusherKey = useMemo(() => {
+        return session.data?.user?.email
+    }, [session.data?.user?.email]);
+
+    useEffect(() => {
+        if (!pusherKey) return
+
+        pusherClient.subscribe(pusherKey);
+
+        const newConversationHandler = (conversation: FullConversationType) => { 
+            setItems((current) => {
+                if(find(current, {id: conversationId})) {
+                    return current
+                }
+
+                return [conversation, ... current]
+            })
+        }
+
+        //add a new conversation in real-time
+        pusherClient.bind('conversation:new', newConversationHandler);
+
+        return () => {
+            pusherClient.unsubscribe(pusherKey);
+            pusherClient.unbind('conversation:new', newConversationHandler);
+
+        }
+    }, [pusherKey])
 
     return (
         <>
