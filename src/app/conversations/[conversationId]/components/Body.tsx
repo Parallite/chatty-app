@@ -6,7 +6,7 @@ import { FC, useEffect, useRef, useState } from "react"
 import { MessageBox } from "./MessageBox"
 import axios from "axios"
 import { pusherClient } from "@/app/libs/pusher"
-import { find } from "lodash"
+import find from "lodash/find"
 
 interface BodyProps {
     initialMessages: FullMessageType[]
@@ -24,6 +24,7 @@ export const Body: FC<BodyProps> = ({ initialMessages }) => {
     useEffect(() => {
         pusherClient.subscribe(conversationId);
         bottomRef?.current?.scrollIntoView();
+
         
         // update real-time message
         const messageHandler = (message: FullMessageType) => {
