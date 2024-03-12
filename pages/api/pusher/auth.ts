@@ -1,8 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
 
-import { pusherServer } from '@/app/libs/pusher';
+import { getPusherInstance } from '@/app/libs/pusher/server';
 import { authOptions } from '@/app/api/auth/[...nextauth]/options';
+
+const pusherServer = getPusherInstance();
 
 export default async function handler(
     req: NextApiRequest,

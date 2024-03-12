@@ -11,7 +11,7 @@ import { BlobsSecondary } from '@/components/BlobsSecondary';
 import { GroupChatModal } from '@/app/conversations/[conversationId]/components/GroupChatModal';
 import { User } from '@prisma/client';
 import { useSession } from 'next-auth/react';
-import { pusherClient } from '@/app/libs/pusher';
+import { pusherClient } from '@/app/libs/pusher/client';
 import { find } from 'lodash';
 
 interface ConversationListProps {

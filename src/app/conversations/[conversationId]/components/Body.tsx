@@ -5,7 +5,7 @@ import { FullMessageType } from "@/app/types"
 import { FC, useEffect, useRef, useState } from "react"
 import { MessageBox } from "./MessageBox"
 import axios from "axios"
-import { pusherClient } from "@/app/libs/pusher"
+import { pusherClient } from "@/app/libs/pusher/client"
 import find from "lodash/find"
 
 interface BodyProps {
