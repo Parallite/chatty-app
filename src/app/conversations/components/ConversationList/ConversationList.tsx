@@ -12,7 +12,8 @@ import { GroupChatModal } from '@/app/conversations/[conversationId]/components/
 import { User } from '@prisma/client';
 import { useSession } from 'next-auth/react';
 import { pusherClient } from '@/app/libs/pusher/client';
-import { find } from 'lodash';
+import find from 'lodash/find';
+
 
 interface ConversationListProps {
     initialItems: FullConversationType[];
@@ -34,7 +35,9 @@ export const ConversationList: FC<ConversationListProps> = ({
     }, [session.data?.user?.email]);
 
     useEffect(() => {
-        if (!pusherKey) return
+        if (!pusherKey) {
+        return
+    }
 
         pusherClient.subscribe(pusherKey);
 
@@ -44,19 +47,49 @@ export const ConversationList: FC<ConversationListProps> = ({
                     return current
                 }
 
-                return [conversation, ... current]
+                return [conversation, ...current]
             })
+        };
+
+        const updateListHandler = (conversation: FullConversationType) => { 
+            setItems((current) => current.map((currentConversation) => {
+                if(currentConversation.id === conversation.id) {
+                    return {
+                        ...currentConversation,
+                        messages: conversation.messages
+                    }
+                }
+
+                return currentConversation
+            }));
+        };
+
+        const removeConversationHandler = (conversation: FullConversationType) => {
+            setItems((current) => {
+                return [ ...current.filter((conv) => conv.id !== conversation.id)]
+            })
+
+            if (conversationId === conversation.id) {
+                router.push('/conversations');
+            }
         }
 
-        //add a new conversation in real-time
+        //add a new conversation in real-time in ConversationList
         pusherClient.bind('conversation:new', newConversationHandler);
+
+        //update a new message in real-time in ConversationList
+        pusherClient.bind('conversation:update', updateListHandler);
+
+        // remove a conversation in real-time from ConversationList
+        pusherClient.bind('conversation:remove', removeConversationHandler);
 
         return () => {
             pusherClient.unsubscribe(pusherKey);
             pusherClient.unbind('conversation:new', newConversationHandler);
-
+            pusherClient.unbind('conversation:update', updateListHandler);
+            pusherClient.unbind('conversation:remove', removeConversationHandler);
         }
-    }, [pusherKey])
+    }, [pusherKey, conversationId, router])
 
     return (
         <>

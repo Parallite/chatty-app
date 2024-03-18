@@ -5,9 +5,12 @@ import { getPusherInstance } from "@/app/libs/pusher/server";
 
 const pusherServer = getPusherInstance();
 
+
 interface IParams {
     conversationId?: string;
 }
+
+const pusherServer = getPusherInstance();
 
 export async function DELETE(
     req: Request,
@@ -45,7 +48,7 @@ export async function DELETE(
 
         existingConversation.users.forEach((user) => {
             if (user.email) {
-                pusherServer.trigger(user.email, 'conversation:remove', existingConversation)
+                pusherServer.trigger(user.email, 'conversation:remove', existingConversation);
             }
         })
 

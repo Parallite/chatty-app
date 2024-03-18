@@ -19,7 +19,7 @@ export const Body: FC<BodyProps> = ({ initialMessages }) => {
 
     useEffect(() => {
         axios.post(`/api/conversations/${conversationId}/seen`)
-    }, [conversationId]);
+    }, [conversationId])
 
     useEffect(() => {
         pusherClient.subscribe(conversationId);
@@ -50,12 +50,12 @@ export const Body: FC<BodyProps> = ({ initialMessages }) => {
         }
 
         pusherClient.bind('messages:new', messageHandler);
-        pusherClient.bind('messages:update', updateMessageHandler);
+        pusherClient.bind('message:update', updateMessageHandler);
 
         return () => {
             pusherClient.unsubscribe(conversationId);
             pusherClient.unbind('messages:new', messageHandler);
-            pusherClient.unbind('messages:update', updateMessageHandler);
+            pusherClient.unbind('message:update', updateMessageHandler);
         }
     }, [conversationId])
 
@@ -67,8 +67,8 @@ export const Body: FC<BodyProps> = ({ initialMessages }) => {
                     key={message.id}
                     data={message}
                 />
-            ))}
-            <div ref={bottomRef} className="pt-24" />
+            ))}     
+            <div ref={bottomRef} className="pt-24"/>
         </div>
     )
 }

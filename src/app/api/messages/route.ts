@@ -1,7 +1,8 @@
 import { getPusherInstance } from '@/app/libs/pusher/server';
-import { getCurrentUser } from "@/app/actions/getCurrentUser"
-import { NextResponse } from "next/server"
-import prisma from "@/app/libs/prismadb"
+import { getCurrentUser } from "@/app/actions/getCurrentUser";
+import { NextResponse } from "next/server";
+import prisma from "@/app/libs/prismadb";
+
 
 const pusherServer = getPusherInstance();
 

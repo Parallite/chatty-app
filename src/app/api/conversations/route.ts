@@ -1,6 +1,7 @@
 import { getCurrentUser } from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
-import prisma from "@/app/libs/prismadb"
+import prisma from "@/app/libs/prismadb";
+
 import { getPusherInstance } from "@/app/libs/pusher/server";
 
 const pusherServer = getPusherInstance();
@@ -99,7 +100,7 @@ export async function POST(
 
         newConversation.users.forEach((user) => {
             if (user.email) {
-                pusherServer.trigger(user.email, 'conversation:new', newConversation)
+                pusherServer.trigger(user.email, 'conversation:new', newConversation);
             }
         })
 
