@@ -24,9 +24,10 @@ export const ProfileDrawer: FC<ProfileDrawerProps> = ({
     data
 }) => {
     const otherUser = useOtherUser(data);
+    const { members } = useActiveList();
+    
     const [confirmModalOpen, setConfirmModalOpen] = useState<boolean>(false)
 
-    const { members } = useActiveList();
     const isActive = members.indexOf(otherUser?.email!) !== -1;
 
     const joinedDate = useMemo(() => {
@@ -104,7 +105,6 @@ export const ProfileDrawer: FC<ProfileDrawerProps> = ({
                                                                     <AvatarGroup users={data.users} />
                                                                 ) : (
                                                                     <Avatar user={otherUser} />
-
                                                                 )
                                                             }
                                                         </div>

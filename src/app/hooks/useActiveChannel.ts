@@ -3,7 +3,7 @@
 import { Channel, Members } from "pusher-js";
 import { useActiveList } from "./useActiveList"
 import { useEffect, useState } from "react";
-import { pusherClient } from "../libs/pusher";
+import { pusherClient } from "../libs/pusher/client";
 
 export const useActiveChannel = () => {
     const { set, add, remove } = useActiveList();
@@ -28,7 +28,7 @@ export const useActiveChannel = () => {
             add(member.id);
         })
 
-        channel.bind('pusher:member_remover', (member: Record<string, any>) => {
+        channel.bind('pusher:member_removed', (member: Record<string, any>) => {
             remove(member.id);
         })
 
