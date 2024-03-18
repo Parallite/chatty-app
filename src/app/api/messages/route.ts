@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
 
+
 const pusherServer = getPusherInstance();
 
 export async function POST(
@@ -68,6 +69,8 @@ export async function POST(
                 }
             }
         });
+
+        //real-time update a new Message in Body component
 
         await pusherServer.trigger(conversationId, 'messages:new', newMessage);
 
