@@ -1,8 +1,9 @@
-import { getCurrentUser } from "@/app/actions/getCurrentUser"
-import { NextResponse } from "next/server"
+import { getPusherInstance } from '@/app/libs/pusher/server';
+import { getCurrentUser } from "@/app/actions/getCurrentUser";
+import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
-import { pusherServer } from "@/app/libs/pusher";
 
+const pusherServer = getPusherInstance();
 
 export async function POST(
     req: Request
@@ -77,7 +78,7 @@ export async function POST(
                 id: conversationId,
                 messages: [lastMessage]
             })
-        })
+        });
 
         return NextResponse.json(newMessage);
 

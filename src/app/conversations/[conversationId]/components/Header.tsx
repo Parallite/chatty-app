@@ -19,9 +19,10 @@ interface HeaderProps {
 
 export const Header: FC<HeaderProps> = ({ conversation }) => {
     const otherUser = useOtherUser(conversation);
+    const { members } = useActiveList();
+
     const [drawerOpen, setDrawerOpen] = useState<boolean>(false)
 
-    const { members } = useActiveList();
     const isActive = members.indexOf(otherUser?.email!) !== -1;
 
     const statusText = useMemo(() => {
@@ -29,7 +30,7 @@ export const Header: FC<HeaderProps> = ({ conversation }) => {
             return `${conversation.users.length} members`;
         }
 
-        return isActive ? 'Active' : 'Offline'
+        return isActive? 'Active' : 'Offline'
     }, [conversation, isActive])
 
     return (

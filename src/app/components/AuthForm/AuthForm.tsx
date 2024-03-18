@@ -28,6 +28,7 @@ export const AuthForm = () => {
     }, [session?.status, router]) 
 
     const toggleVariant = useCallback(() => {
+                
         if (variant === 'LOGIN') {
             setVariant("REGISTER")
         } else {
@@ -58,15 +59,6 @@ export const AuthForm = () => {
                     ...data,
                     redirect: false
                 }))
-                .then((callback) => {
-                    if (callback?.error) {
-                        toast.error('Invalid credentials!');
-                    }
-
-                    if (callback?.ok) {
-                        router.push('/conversations');
-                    }
-                })
                 .catch(() => toast.error("Ooops, something went wrong!"))
                 .finally(() => setIsLoading(false))
         }
@@ -81,8 +73,8 @@ export const AuthForm = () => {
                         toast.error('Invalid credentials')
                     }
                     if (callback?.ok && !callback?.error) {
-                        toast.success('Logged in!');
-                        router.push('/conversations');
+                        toast.success('Logged in!')
+                        router.push('/users')
                     }
                 })
                 .finally(() => setIsLoading(false))
@@ -99,8 +91,7 @@ export const AuthForm = () => {
                     toast.error('Invalid credentials')
                 }
                 if (callback?.ok && !callback?.error) {
-                    toast.success('Logged in!');
-                    router.push('/conversations');
+                    toast.success('Logged in!')
                 }
             })
             .finally(() => setIsLoading(false))
