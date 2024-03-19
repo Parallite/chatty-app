@@ -2,7 +2,7 @@ import PusherServer from 'pusher';
 
 let pusherInstance: PusherServer | null = null;
 
-export const getPusherInstance = () => {
+const getPusherInstance = () => {
     if (!pusherInstance) {
         pusherInstance = new PusherServer({
             appId: process.env.PUSHER_APP_ID! as string,
@@ -14,3 +14,5 @@ export const getPusherInstance = () => {
     }
     return pusherInstance;
 };
+
+export const pusherServer = getPusherInstance();
