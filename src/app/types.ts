@@ -8,13 +8,20 @@ export type Variant = 'LOGIN' | 'REGISTER'
 export interface AuthFormFields extends FieldValues {
     name: string,
     email: string,
-    password: string
+    password: string,
+    confirmPassword: string
 }
 
-export type FieldsId = "name" | "email" | "password"
+export interface LoginFormFields extends FieldValues {
+    email: string,
+    password: string,
+}
+
+export type FieldsId = "name" | "email" | "password" | "confirmPassword"
 
 export type InputRegister =
     UseFormRegister<AuthFormFields> |
+    UseFormRegister<LoginFormFields> |
     UseFormRegister<SettingsFormFields> |
     UseFormRegister<MessageFormFields> |
     UseFormRegister<GroupChatFields>

@@ -5,30 +5,32 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
 import { signIn, useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import { yupResolver } from "@hookform/resolvers/yup"
 import axios from "axios"
 import { BsGithub } from 'react-icons/bs'
 import { BsGoogle } from 'react-icons/bs'
+import { AuthFormFields, LoginFormFields, Variant } from "@/app/types"
+import { authFormSchema } from "@/app/types/validationShema"
 
-import { AuthFormFields, Variant } from "@/app/types"
 import { Input } from "@/components/Inputs"
 import { Button } from "@/components/Button"
 import { AuthLogo } from "@/components/AuthLogo"
 import { AuthSocialButtons } from "@/components/AuthSocialButtons"
 
+
 export const AuthForm = () => {
     const session = useSession();
-    const router = useRouter()
-    const [variant, setVariant] = useState<Variant>('LOGIN')
-    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const router = useRouter();
+    const [variant, setVariant] = useState<Variant>('LOGIN');
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        if(session?.status === 'authenticated') {
+        if (session?.status === 'authenticated') {
             router.push('/users')
         }
-    }, [session?.status, router]) 
+    }, [session?.status, router])
 
     const toggleVariant = useCallback(() => {
-                
         if (variant === 'LOGIN') {
             setVariant("REGISTER")
         } else {
@@ -36,21 +38,25 @@ export const AuthForm = () => {
         }
     }, [variant])
 
+    const authFormOptions = { 
+        resolver: yupResolver(authFormSchema(variant)),
+        defaultValues: {
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    }
+};
+
     const {
         register,
         handleSubmit,
         formState: {
             errors
         }
-    } = useForm<AuthFormFields>({
-        defaultValues: {
-            name: '',
-            email: '',
-            password: ''
-        }
-    })
+    } = useForm<AuthFormFields | LoginFormFields>(authFormOptions)
 
-    const onSubmit: SubmitHandler<AuthFormFields> = (data) => {
+    const onSubmit: SubmitHandler<AuthFormFields | LoginFormFields> = (data) => {
         setIsLoading(true);
 
         if (variant === "REGISTER") {
@@ -59,7 +65,9 @@ export const AuthForm = () => {
                     ...data,
                     redirect: false
                 }))
-                .catch(() => toast.error("Ooops, something went wrong!"))
+                .catch((callback) => {
+                    toast.error(callback?.response.data)
+                })
                 .finally(() => setIsLoading(false))
         }
 
@@ -77,6 +85,7 @@ export const AuthForm = () => {
                         router.push('/users')
                     }
                 })
+                .catch(() => toast.error("Ooops, something went wrong!"))
                 .finally(() => setIsLoading(false))
         }
     }
@@ -87,7 +96,7 @@ export const AuthForm = () => {
             redirect: false
         })
             .then((callback) => {
-                if (callback?.error) {
+                if (callback?.error) {                    
                     toast.error('Invalid credentials')
                 }
                 if (callback?.ok && !callback?.error) {
@@ -134,6 +143,17 @@ export const AuthForm = () => {
                         errors={errors}
                         disabled={isLoading}
                     />
+                    {variant === "REGISTER" && (
+                        <Input
+                            id='confirmPassword'
+                            label="Confirm password"
+                            type="password"
+                            icon="password"
+                            register={register}
+                            errors={errors}
+                            disabled={isLoading}
+                        />
+                    )}
                     <div>
                         <Button
                             disabled={isLoading}
@@ -177,7 +197,7 @@ export const AuthForm = () => {
                         {variant === "LOGIN" ? "Create now" : "Login"}
                     </div>
                 </div>
-            </div>  
+            </div>
         </div>
     )
 }

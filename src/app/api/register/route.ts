@@ -15,7 +15,7 @@ export async function POST(req: Request) {
             }
         })
 
-        if (existUser) return new NextResponse('User already exist', { status: 400 })
+        if (existUser) return new NextResponse('The User already exist!', { status: 400 })
 
         const hashedPassword = await bcrypt.hash(password, 12);
 

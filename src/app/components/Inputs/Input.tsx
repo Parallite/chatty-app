@@ -1,15 +1,17 @@
 import clsx from "clsx"
-import { FC } from "react"
-import { FieldErrors, UseFormRegister } from 'react-hook-form'
-import { FieldsId, AuthFormFields, SettingsFormFields, InputRegister } from "@/app/types"
+import { FC, useState } from "react"
+import { FieldErrors } from 'react-hook-form'
+import { FieldsId, InputRegister } from "@/app/types"
+import { ErrorMessage } from "@hookform/error-message";
 
 import { BsFillPersonFill } from "react-icons/bs";
-import { BsKeyFill } from "react-icons/bs";
 import { BsEnvelopeFill } from "react-icons/bs";
 
-type IconType = "password" | "email" | "name"
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
-// validationSchema
+type IconType = "password" | "email" | "name" | "confirmPassword" | "text";
+type VisibleType = "password" | "text";
 
 interface InputProps {
     label: string,
@@ -27,9 +29,6 @@ const icons = (icon: string) => {
     switch (icon) {
         case 'name': {
             return <BsFillPersonFill />;
-        }
-        case 'password': {
-            return <BsKeyFill />;
         }
         case 'email': {
             return <BsEnvelopeFill />;
@@ -51,26 +50,41 @@ export const Input: FC<InputProps> = ({
     secondary,
     register
 }) => {
-        return (
-            <div>
-                <label htmlFor={id} className={clsx(`
+    const [passwordShown, setPasswordShown] = useState(false);
+    const [typeField, setTypeField] = useState<VisibleType>('password');
+
+    const togglePasswordVisiblity = () => {
+        if (typeField === 'password') {
+            setPasswordShown(true);
+            setTypeField("text");
+        } else {
+            setPasswordShown(false);
+            setTypeField("password");
+        }
+    };
+
+    return (
+        <div>
+            <label htmlFor={id} className={clsx(`
                 block 
                 text-sm 
                 font-medium 
                 leading-6 
                 text-purple-middle`,
-                    secondary && "text-green-light"
-                )}>
-                    {label}
-                </label>
-                <div className="mt-2 flex">
-                    <input
-                        id={id}
-                        type={type}
-                        autoComplete={id}
-                        disabled={disabled}
-                        {...register(id, { required })}
-                        className={clsx(`
+                secondary && "text-green-light"
+            )}>
+                {label}
+            </label>
+            <div className="mt-2 flex">
+                <input
+                    id={id}
+                    type={(
+                        type !== 'password' ? type : typeField
+                    )}
+                    autoComplete={id}
+                    disabled={disabled}
+                    {...register(id, { required })}
+                    className={clsx(`
                         form-input
                         block
                         w-full
@@ -88,17 +102,32 @@ export const Input: FC<InputProps> = ({
                         focus:ring-orange-middle
                         sm:text-sm
                         sm:leading-6`,
-                            errors[id] && "focus:ring-red",
-                            disabled && "opacity-50 cursor-default",
-                            icon && "rounded-s-md rounded-e-none",
-                            secondary && " text-green-light, ring-green-light placeholder:text-green-light"
-                        )}
-                    />
-                    {
-                        icon && <div className="inline-flex justify-center rounded-e-md bg-white px-3 py-2 text-purple-middle
-                    ring-1 ring-inset ring-purple-middle align-middle">{icons(icon)}</div>
-                    }
-                </div>
+                        errors[id] && "focus:ring-red",
+                        disabled && "opacity-50 cursor-default",
+                        icon && "rounded-s-md rounded-e-none",
+                        secondary && " text-green-light, ring-green-light placeholder:text-green-light"
+                    )}
+                />
+                {
+                    icon && icon !== "password" ? (
+                        <div className="inline-flex justify-center rounded-e-md bg-white px-3 py-2 text-purple-middle
+                        ring-1 ring-inset ring-purple-middle align-middle">{icons(icon)}</div>
+                    ) :
+                        <button type="button" onClick={togglePasswordVisiblity} className="inline-flex justify-center rounded-e-md bg-white px-3 py-2 text-purple-middle
+                    ring-1 ring-inset ring-purple-middle align-middle">
+                            {
+                                passwordShown ? <FaEye /> : <FaEyeSlash />
+                            }
+                        </button>
+                }
             </div>
-        )
-    }
+            <ErrorMessage
+                errors={errors}
+                name={id}
+                render={({ message }) => (
+                    <p className="bg-green-light text-red rounded-md border-red border-2 p-2 sm:text-xs my-1">{message}</p>
+                )}
+            />
+        </div>
+    )
+}
