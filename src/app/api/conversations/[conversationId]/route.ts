@@ -54,6 +54,7 @@ export async function DELETE(
 
     } catch (err: any) {
         console.log(err, 'ERROR_CONVERSATION_DELETE');
+
         return new NextResponse('Internal Error', { status: 500 });
     }
 }

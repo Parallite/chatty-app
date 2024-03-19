@@ -8,7 +8,6 @@ export default async function handler(
     request: NextApiRequest,
     response: NextApiResponse
 ) {
-    console.log('started Handler Pusher');
     try {
         const session = await getServerSession(request, response, authOptions);
 
