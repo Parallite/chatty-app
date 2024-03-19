@@ -67,6 +67,8 @@ export async function POST(
             }
         });
 
+        //real-time update a new Message in Body component
+
         await pusherServer.trigger(conversationId, 'messages:new', newMessage);
 
         const lastMessage = updatedConversation.messages[updatedConversation.messages.length - 1];

@@ -14,6 +14,7 @@ import { useSession } from 'next-auth/react';
 import { pusherClient } from '@/app/libs/pusher/client';
 import find from 'lodash/find';
 
+
 interface ConversationListProps {
     initialItems: FullConversationType[];
     users: User[]
