@@ -13,6 +13,8 @@ export async function POST(
 ) {
     try {
         const currentUser = await getCurrentUser();
+        console.log(currentUser);
+
         const {
             conversationId
         } = params;
