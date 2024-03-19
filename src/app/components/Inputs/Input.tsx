@@ -1,7 +1,6 @@
 import clsx from "clsx"
 import { FC, useState } from "react"
 import { FieldErrors } from 'react-hook-form'
-import { FieldsId, InputRegister } from "@/app/types/common.types"
 import { ErrorMessage } from "@hookform/error-message";
 
 import { BsFillPersonFill } from "react-icons/bs";
@@ -9,6 +8,7 @@ import { BsEnvelopeFill } from "react-icons/bs";
 
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import { FieldsId, InputRegister } from "@/app/types/formTypes";
 
 type IconType = "password" | "email" | "name" | "confirmPassword" | "text";
 type VisibleType = "password" | "text";

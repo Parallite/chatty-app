@@ -1,7 +1,7 @@
 'use client'
 
 import { useConversation } from "@/app/hooks/useConversation"
-import { FullMessageType } from "@/app/types/common.types"
+import { FullMessageType } from "@/app/types/messagesTypes"
 import { FC, useEffect, useRef, useState } from "react"
 import { MessageBox } from "./MessageBox"
 import axios from "axios"

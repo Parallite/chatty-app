@@ -1,7 +1,7 @@
 'use client'
 
 import { Avatar } from "@/app/components/Avatar";
-import { FullMessageType } from "@/app/types/common.types"
+import { FullMessageType } from "@/app/types/messagesTypes"
 import clsx from "clsx";
 import { format } from "date-fns";
 import { useSession } from "next-auth/react";

@@ -1,5 +1,5 @@
-import { Variant } from "@/app/types/common.types"
 import * as yup from "yup"
+import { Variant } from "@/app/types/formTypes"
 
 export const authFormSchema = (varian: Variant) => {
     if (varian === 'REGISTER') {

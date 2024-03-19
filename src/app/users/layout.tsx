@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import { Sidebar } from "@/components/Sidebars/Sidebar";
 import { getUsers } from "@/app/actions/getUsers";
 import { UserList } from "@/components/UserList";
-import { BoblsBg } from "@/components/BoblsBg";
 
 interface UsersLayoutProps {
     children: ReactNode

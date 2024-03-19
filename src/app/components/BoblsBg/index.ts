@@ -1,1 +1,0 @@
-export { BoblsBg } from './BoblsBg'
