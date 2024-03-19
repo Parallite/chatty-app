@@ -2,7 +2,7 @@ import { Button } from '@/app/components/Button';
 import { Input } from '@/app/components/Inputs';
 import { Modal } from '@/app/components/Modal';
 import { SelectChat } from '@/app/components/SelectChat';
-import { GroupChatFields } from '@/app/types/common.types';
+import { GroupChatFields } from '@/app/types/formTypes';
 import { User } from '@prisma/client';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';

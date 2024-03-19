@@ -1,7 +1,5 @@
-import { Conversation, Message, User } from "@prisma/client";
-import { FieldValues, UseFormRegister } from "react-hook-form";
+import { FieldValues, UseFormRegister } from "react-hook-form"
 
-// AuthForm
 
 export type Variant = 'LOGIN' | 'REGISTER'
 
@@ -26,17 +24,7 @@ export type InputRegister =
     UseFormRegister<MessageFormFields> |
     UseFormRegister<GroupChatFields>
 
-// Messages
-
-export type FullMessageType = Message & {
-    sender: User,
-    seen: User[]
-};
-
-export type FullConversationType = Conversation & {
-    users: User[];
-    messages: FullMessageType[]
-};
+// Message
 
 export interface MessageFormFields extends FieldValues {
     message: string,
