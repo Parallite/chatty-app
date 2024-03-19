@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
-import { getPusherInstance } from "@/app/libs/pusher/server";
+import { pusherServer } from "@/app/libs/pusher/server";
 
 const pusherServer = getPusherInstance();
 
@@ -9,8 +9,6 @@ const pusherServer = getPusherInstance();
 interface IParams {
     conversationId?: string;
 }
-
-const pusherServer = getPusherInstance();
 
 export async function DELETE(
     req: Request,

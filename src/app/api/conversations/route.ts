@@ -1,10 +1,7 @@
 import { getCurrentUser } from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
-
-import { getPusherInstance } from "@/app/libs/pusher/server";
-
-const pusherServer = getPusherInstance();
+import { pusherServer } from "@/app/libs/pusher/server";
 
 export async function POST(
     req: Request
