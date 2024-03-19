@@ -5,7 +5,7 @@ import { format } from "date-fns"
 import { useSession } from 'next-auth/react'
 import clsx from 'clsx'
 import { useOtherUser } from '@/app/hooks/useOtherUser'
-import { FullConversationType } from '@/app/types'
+import { FullConversationType } from '@/app/types/common.types'
 import { Avatar } from '@/components/Avatar'
 import { AvatarGroup } from '@/components/AvatarGroup'
 

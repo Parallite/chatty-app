@@ -1,4 +1,4 @@
-import { InputRegister } from "@/app/types";
+import { InputRegister } from "@/app/types/common.types";
 import { FC } from "react";
 import { FieldErrors } from "react-hook-form";
 
