@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import axios from "axios"
 import { BsGithub } from 'react-icons/bs'
 import { BsGoogle } from 'react-icons/bs'
-import { AuthFormFields, LoginFormFields, Variant } from "@/app/types"
+import { AuthFormFields, LoginFormFields, Variant } from "@/app/types/common.types"
 import { authFormSchema } from "@/app/types/validationShema"
 
 import { Input } from "@/components/Inputs"

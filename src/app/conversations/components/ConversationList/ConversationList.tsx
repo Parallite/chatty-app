@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { ConversationBox } from '@/app/conversations/components/ConversationBox';
-import { FullConversationType } from '@/app/types';
+import { FullConversationType } from '@/app/types/common.types';
 import { LuUserPlus2 } from "react-icons/lu";
 import { BlobsSecondary } from '@/components/BlobsSecondary';
 import { GroupChatModal } from '@/app/conversations/[conversationId]/components/GroupChatModal';

@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import { FC, useState } from "react"
 import { FieldErrors } from 'react-hook-form'
-import { FieldsId, InputRegister } from "@/app/types"
+import { FieldsId, InputRegister } from "@/app/types/common.types"
 import { ErrorMessage } from "@hookform/error-message";
 
 import { BsFillPersonFill } from "react-icons/bs";

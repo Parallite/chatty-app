@@ -1,4 +1,4 @@
-import { Variant } from "@/app/types"
+import { Variant } from "@/app/types/common.types"
 import * as yup from "yup"
 
 export const authFormSchema = (varian: Variant) => {

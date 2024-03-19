@@ -9,7 +9,7 @@ import { Input } from "@/components/Inputs";
 import Image from "next/image";
 import { CldUploadButton } from "next-cloudinary";
 import { Button } from "@/components/Button";
-import { SettingsFormFields } from "@/app/types";
+import { SettingsFormFields } from "@/app/types/common.types";
 import { format } from "date-fns";
 
 interface SettingsModalProps {

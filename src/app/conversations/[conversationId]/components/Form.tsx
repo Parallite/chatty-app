@@ -7,7 +7,7 @@ import { HiPaperAirplane, HiPhoto } from "react-icons/hi2";
 import { CldUploadButton } from 'next-cloudinary';
 
 import { MessageInput } from "./MessageInput";
-import { MessageFormFields } from "@/app/types";
+import { MessageFormFields } from "@/app/types/common.types";
 
 export const Form = () => {
     const { conversationId } = useConversation();
