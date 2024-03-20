@@ -9,6 +9,7 @@ import { BsEnvelopeFill } from "react-icons/bs";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { FieldsId, InputRegister } from "@/app/types/formTypes";
+import { motion } from "framer-motion";
 
 type IconType = "password" | "email" | "name" | "confirmPassword" | "text";
 type VisibleType = "password" | "text";
@@ -121,13 +122,18 @@ export const Input: FC<InputProps> = ({
                         </button>
                 }
             </div>
-            <ErrorMessage
-                errors={errors}
-                name={id}
-                render={({ message }) => (
-                    <p className="bg-green-light text-red rounded-md border-red border-2 p-2 sm:text-xs my-1">{message}</p>
-                )}
-            />
+                <ErrorMessage
+                    errors={errors}
+                    name={id}
+                    render={({ message }) => (
+                        <motion.p
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, delay: 0.2 }}
+                        exit={{ opacity: 0, scale: 0 }}
+                        className="bg-green-light text-red rounded-md border-red border-2 p-2 sm:text-xs my-1">{message}</motion.p>
+                    )}
+                />
         </div>
     )
 }

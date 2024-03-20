@@ -28,7 +28,9 @@ export const MobileItem: FC<MobileItemsProps> = ({
             className={clsx(`
                 group
                 flex
-                gap-x-3
+                m-2
+                gap-x-4
+                rounded-md
                 text-sm
                 leading-6
                 font-semibold
@@ -36,10 +38,13 @@ export const MobileItem: FC<MobileItemsProps> = ({
                 justify-center
                 p-4
                 text-white
+                shadow-2xl
                 hover:bg-white
                 hover:text-purple-middle
+                ransition-all
+                duration-500
             `,
-                active && "bg-blue-middle text-purple-middle w-full"
+                active && 'bg-orange-middle text-purple-middle'
             )}
         >
             <Icon className="h-6 w-6"/>

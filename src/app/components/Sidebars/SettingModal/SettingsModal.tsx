@@ -110,6 +110,8 @@ export const SettingsModal: FC<SettingsModalProps> = ({
                             <Input
                                 disabled={isLoading}
                                 label="Name"
+                                type="text"
+                                icon="name"
                                 id="name"
                                 errors={errors}
                                 required

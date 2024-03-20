@@ -14,7 +14,7 @@ export const MobileFooter = () => {
     }
     return (
         <div className='fixed justify-between w-full bottom-0 z-40 flex items-center 
-     border-t-[1px] lg:hidden bg-purple-middle border-purple-middle '>
+     border-t-[1px] lg:hidden bg-purple-dark border-purple-dark '>
             {
                 routes.map((route) => (
                     <MobileItem

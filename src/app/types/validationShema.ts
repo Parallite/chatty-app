@@ -10,7 +10,7 @@ export const authFormSchema = (varian: Variant) => {
                     .required("Name is a required field")
                     .min(3, 'Must be at least 3 characters long')
                     .max(15, 'Must not be more than 15 characters long')
-                    .matches(/^[a-zA-Z]+$/,
+                    .matches(/^[a-zA-ZА-Яа-я]+$/,
                         "Must be a string without spaces"),
                 email: yup.string()
                     .required("Email is a required field")

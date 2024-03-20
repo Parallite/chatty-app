@@ -20,13 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className='bg-purple-dark h-full w-full'>
-        <div className={inter.className}>
             <AuthContext>
               <ToasterContext />
               <ActiveStatus />
               {children}
             </AuthContext>
-        </div>
       </body>
     </html>
   )

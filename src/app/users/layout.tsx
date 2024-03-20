@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Sidebar } from "@/components/Sidebars/Sidebar";
 import { getUsers } from "@/app/actions/getUsers";
-import { UserList } from "@/components/UserList";
+import { UserList } from "@/app/users/components/UserList";
 
 interface UsersLayoutProps {
     children: ReactNode
