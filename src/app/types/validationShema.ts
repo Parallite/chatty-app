@@ -39,3 +39,15 @@ export const authFormSchema = (varian: Variant) => {
             })
     }
 }
+
+export const settingsFormSchema = yup
+    .object()
+    .shape({
+        name: yup.string()
+            .required("Name is a required field")
+            .min(3, 'Must be at least 3 characters long')
+            .max(15, 'Must not be more than 15 characters long')
+            .matches(/^[a-zA-ZА-Яа-я]+$/,
+                "Must be a string without spaces"),
+        image: yup.string().default('')
+    })

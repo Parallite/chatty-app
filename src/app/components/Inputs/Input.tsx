@@ -62,7 +62,7 @@ export const Input: FC<InputProps> = ({
             setPasswordShown(false);
             setTypeField("password");
         }
-    };
+    };    
 
     return (
         <div>
