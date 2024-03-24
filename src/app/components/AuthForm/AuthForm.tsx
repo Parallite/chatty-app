@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation"
 import { yupResolver } from "@hookform/resolvers/yup"
 import axios from "axios"
 import { BsGithub } from 'react-icons/bs'
-import { BsGoogle } from 'react-icons/bs'
+import { BsGoogle } from 'react-icons/bs';
+import { motion } from "framer-motion";
 
 import { AuthFormFields, LoginFormFields, Variant } from "@/app/types/formTypes"
 import { authFormSchema } from "@/app/types/validationShema"
@@ -39,15 +40,15 @@ export const AuthForm = () => {
         }
     }, [variant])
 
-    const authFormOptions = { 
+    const authFormOptions = {
         resolver: yupResolver(authFormSchema(variant)),
         defaultValues: {
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-    }
-};
+            name: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        }
+    };
 
     const {
         register,
@@ -97,7 +98,7 @@ export const AuthForm = () => {
             redirect: false
         })
             .then((callback) => {
-                if (callback?.error) {                    
+                if (callback?.error) {
                     toast.error('Invalid credentials')
                 }
                 if (callback?.ok && !callback?.error) {
@@ -108,13 +109,17 @@ export const AuthForm = () => {
     }
 
     return (
-        <div className="mt-4 sm:mx-auto sm:w-full sm:max-w-md bg-white rounded-3xl relative z-10">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7 }}
+            className="mt-4 sm:mx-auto sm:w-full sm:max-w-md bg-white rounded-3xl relative z-10">
             <AuthLogo />
             <div className="px-4 py-8 sm:rounded-lg sm:px-10">
                 <h2 className="mb-8 text-center text-3xl font-bold tracking-tight text-purple-middle">
                     {variant === "LOGIN" ? "Login" : "Sign up"}
                 </h2>
-                <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+                <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
                     {variant === "REGISTER" && (
                         <Input
                             id='name'
@@ -155,7 +160,7 @@ export const AuthForm = () => {
                             disabled={isLoading}
                         />
                     )}
-                    <div>
+                    <div className="pt-6">
                         <Button
                             disabled={isLoading}
                             fullWidth
@@ -199,6 +204,6 @@ export const AuthForm = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }

@@ -1,16 +1,20 @@
 import { User } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { FC, useMemo, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { Modal } from "@/components/Modal";
-import { Input } from "@/components/Inputs";
 import Image from "next/image";
 import { CldUploadButton } from "next-cloudinary";
-import { Button } from "@/components/Button";
+import { FC, useMemo, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
 import { format } from "date-fns";
+
+import { settingsFormSchema } from "@/app/types/validationShema";
 import { SettingsFormFields } from "@/app/types/formTypes";
+
+import { Modal } from "@/components/Modal";
+import { Input } from "@/components/Inputs";
+import { Button } from "@/components/Button";
 
 interface SettingsModalProps {
     isOpen?: boolean;
@@ -30,6 +34,14 @@ export const SettingsModal: FC<SettingsModalProps> = ({
         return format(new Date(currentUser.createdAt), 'PP')
     }, [currentUser.createdAt]);
 
+    const settingsFormOptions = {
+        resolver: yupResolver(settingsFormSchema),
+        defaultValues: {
+            name: currentUser?.name || '',
+            image: currentUser?.image || ''
+        }
+    };
+
     const {
         register,
         handleSubmit,
@@ -38,12 +50,7 @@ export const SettingsModal: FC<SettingsModalProps> = ({
         formState: {
             errors
         }
-    } = useForm<SettingsFormFields>({
-        defaultValues: {
-            name: currentUser?.name || '',
-            image: currentUser?.image || ''
-        }
-    });
+    } = useForm<SettingsFormFields>(settingsFormOptions);
 
     const image = watch('image');
 
@@ -52,6 +59,12 @@ export const SettingsModal: FC<SettingsModalProps> = ({
             shouldValidate: true
         });
     }
+
+    const handleCancelModal = () => {
+        setValue('name', currentUser?.name || '')
+        onClose()
+    }
+    
 
     const onSubmit: SubmitHandler<SettingsFormFields> = (data) => {
         setIsLoading(true);
@@ -95,7 +108,7 @@ export const SettingsModal: FC<SettingsModalProps> = ({
                                     <CldUploadButton
                                         options={{ maxFiles: 1 }}
                                         onUpload={handleUpload}
-                                        uploadPreset="rza3ffqm"
+                                        uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_PRESET}
                                     >
                                         <Button
                                             disabled={isLoading}
@@ -110,6 +123,8 @@ export const SettingsModal: FC<SettingsModalProps> = ({
                             <Input
                                 disabled={isLoading}
                                 label="Name"
+                                type="text"
+                                icon="name"
                                 id="name"
                                 errors={errors}
                                 required
@@ -145,7 +160,7 @@ export const SettingsModal: FC<SettingsModalProps> = ({
                         <Button
                             disabled={isLoading}
                             danger
-                            onClick={onClose}
+                            onClick={handleCancelModal}
                         >
                             Cancel
                         </Button>

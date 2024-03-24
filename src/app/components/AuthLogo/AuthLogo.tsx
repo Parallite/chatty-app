@@ -1,8 +1,14 @@
+'use client'
+
 import { titanOneFont } from "@/app/fonts"
+import { motion } from "framer-motion"
 
 export const AuthLogo = () => {
     return (
-        <div className="w-full mt-4">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }} className="w-full mt-4">
             <div className={titanOneFont.className}>
                 <div className="flex justify-center">
                     <div className="w-20 h-20 rounded-full relative flex justify-center items-center">
@@ -19,7 +25,6 @@ export const AuthLogo = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
- 

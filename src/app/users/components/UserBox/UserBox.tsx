@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import React, { FC, useCallback, useState } from 'react'
 import { Avatar } from '@/components/Avatar'
-import { LoadingModal } from '../LoadingModal'
+import { LoadingModal } from '../../../components/LoadingModal'
 
 interface UserBoxProps {
     data: User
@@ -35,7 +35,7 @@ export const UserBox: FC<UserBoxProps> = ({ data }) => {
             <div
                 onClick={handleClick}
                 className='w-full relative flex items-center space-x-3 bg-white-primary p-3
-            hover:bg-blue-light rounded-lg cursor-pointer text-blue-dark hover:text-white transition'
+            hover:bg-blue-dark rounded-lg cursor-pointer text-blue-dark hover:text-white transition'
             >
                 <Avatar user={data} />
                 <div className='min-w-0 flex-1'>

@@ -2,19 +2,13 @@ import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import { signOut } from "next-auth/react";
 import { useConversation } from "./useConversation";
-import { LuUsers, LuMessagesSquare, LuLogOut, LuHome } from "react-icons/lu";
+import { LuUsers, LuMessagesSquare, LuLogOut } from "react-icons/lu";
 
 export const useRoutes = () => {
     const pathname = usePathname()
     const { conversationId } = useConversation();
 
     const routes = useMemo(() => [
-        {
-            label: 'Home',
-            href: '/',
-            icon: LuHome,
-            active: pathname === '/'
-        },
         {
             label: 'Chat',
             href: '/conversations',
