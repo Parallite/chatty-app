@@ -70,9 +70,8 @@ export const Input: FC<InputProps> = ({
                 block 
                 text-sm 
                 font-medium 
-                leading-6 
-                text-purple-middle`,
-                secondary && "text-green-light"
+                leading-6`,
+                secondary ? "text-green-light" : "text-purple-middle" 
             )}>
                 {label}
             </label>

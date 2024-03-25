@@ -1,6 +1,7 @@
 import { getConversationById } from "@/app/actions/getConversationById"
 import { getMessages } from "@/app/actions/getMessages";
 import { EmptyState } from "@/app/components/EmptyState";
+import { motion } from 'framer-motion'
 
 import { Header } from "./components/Header";
 import { Body } from "./components/Body";
@@ -16,7 +17,8 @@ const ConversationId = async ({ params }: { params: IParams }) => {
 
     if (!conversation) {
         return (
-            <div className="h-full bg-white rounded-xl shadow-inner shadow-purple-middle">
+            <div
+                className="h-full bg-white rounded-xl shadow-inner shadow-purple-middle grow">
                 <div className="h-full flex flex-cols">
                     <EmptyState />
                 </div>
@@ -25,10 +27,12 @@ const ConversationId = async ({ params }: { params: IParams }) => {
     }
 
     return (
-        <div className="h-full w-full bg-white lg:rounded-xl shadow-inner shadow-purple-middle lg:py-1 lg:px-1">
+        <div
+            className="h-full bg-white lg:rounded-xl shadow-inner shadow-purple-middle lg:py-1 lg:px-1 grow"
+        >
             <div className="h-full flex flex-col">
                 <Header conversation={conversation} />
-                <Body initialMessages={messages}/>
+                <Body initialMessages={messages} />
                 <Form />
             </div>
         </div>

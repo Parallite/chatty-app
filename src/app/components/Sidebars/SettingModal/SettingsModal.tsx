@@ -64,11 +64,10 @@ export const SettingsModal: FC<SettingsModalProps> = ({
         setValue('name', currentUser?.name || '')
         onClose()
     }
-    
+
 
     const onSubmit: SubmitHandler<SettingsFormFields> = (data) => {
         setIsLoading(true);
-
         axios.post('/api/settings', data)
             .then(() => {
                 router.refresh();
@@ -88,7 +87,7 @@ export const SettingsModal: FC<SettingsModalProps> = ({
                     <div className="border-b border-purple-dark">
                         <h2 className="text-base font-semibold leading-7 text-white">
                             Profile
-                        </h2>                        
+                        </h2>
                         <p className="mt-1 text-sm leading-6 text-green-light">
                             Edit your public information.
                         </p>
@@ -110,13 +109,10 @@ export const SettingsModal: FC<SettingsModalProps> = ({
                                         onUpload={handleUpload}
                                         uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_PRESET}
                                     >
-                                        <Button
-                                            disabled={isLoading}
-                                            secondary
-                                            type="button"
-                                        >
+                                        <span className="flex min-w-[100px] justify-center rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2
+                                            focus-visible:outline-offset-2 text-white relative overflow-hidden bg-purple-middle hover:bg-orange-middle">
                                             Change
-                                        </Button>
+                                        </span>
                                     </CldUploadButton>
                                 </div>
                             </div>
@@ -134,32 +130,33 @@ export const SettingsModal: FC<SettingsModalProps> = ({
                         </div>
                     </div>
                     <div className="py-5 sm:px-0 sm:pt-0">
-                            <dl className="space-y-8 sm:space-y-6">
-                                <div>
-                                    <dt className="text-sm font-medium text-green-middle sm:flex-shrink-0">
-                                        Email
-                                    </dt>
-                                    <dd className="mt-1 text-sm text-white sm:col-span-2">
-                                        {currentUser.email}
-                                    </dd>
-                                </div>
-                                <hr />
-                                <div>
-                                    <dt className="text-sm font-medium text-green-middle sm:w-40 sm:flex-shrink-0">
-                                        Joined
-                                    </dt>
-                                    <dd className="mt-1 text-sm text-white sm:col-span-2">
-                                        <time dateTime={joinedDate}>
-                                            {joinedDate}
-                                        </time>
-                                    </dd>
-                                </div>
-                            </dl>
-                        </div>
-                        <div className="mt-6 flex items-center justify-end gap-x-6">
+                        <dl className="space-y-8 sm:space-y-6">
+                            <div>
+                                <dt className="text-sm font-medium text-green-middle sm:flex-shrink-0">
+                                    Email
+                                </dt>
+                                <dd className="mt-1 text-sm text-white sm:col-span-2">
+                                    {currentUser.email}
+                                </dd>
+                            </div>
+                            <hr />
+                            <div>
+                                <dt className="text-sm font-medium text-green-middle sm:w-40 sm:flex-shrink-0">
+                                    Joined
+                                </dt>
+                                <dd className="mt-1 text-sm text-white sm:col-span-2">
+                                    <time dateTime={joinedDate}>
+                                        {joinedDate}
+                                    </time>
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div className="mt-6 flex items-center justify-end gap-x-6">
                         <Button
                             disabled={isLoading}
                             danger
+                            type="button"
                             onClick={handleCancelModal}
                         >
                             Cancel
