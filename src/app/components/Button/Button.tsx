@@ -49,21 +49,29 @@ export const Button: FC<ButtonProps> = ({
             `,
                 disabled && "opacity-50 cursor-default",
                 fullWidth && "w-full",
-                secondary ? "bg-blue-middle hover:bg-orange-middle" : "text-white",
+                secondary ? "bg-purple-middle hover:bg-orange-middle" : "text-white",
                 danger && "bg-red hover:bg-orange-middle focus-visible:outline-orange-middle",
                 !secondary && !danger && "bg-purple-middle hover:ring-white hover:bg-orange-middle hover:border-blue-dark hover:shadow-blue-light focus-visible:outline-bg-blue-middle transition-colors"
             )}
         >
-            <div className="relative z-10">
+            <span className="relative z-10 w-full">
                 {children}
-            </div>
+            </span>
             {
                 !secondary && !danger && (
-                    <div>
+                    <>
                         <BlobFirst fill={"#D4A5B1"} className={"absolute w-20 h-20 top-0 left-0 rotate-90 group-hover:rotate-180 transition-transform"} />
                         <BlobSecond fill={"#C2E8E4"} className={"absolute w-10 h-10 -top-4 right-0 rotate-45 group-hover:rotate-0 transition-transform"} />
                         <BlobThird fill={"#72CEC1"} className={"absolute w-10 h-10 -bottom-4 right-20 rotate-45 group-hover:rotate-0 transition-transform"} />
-                    </div>
+                    </>
+                )
+            }
+                        {
+                secondary && (
+                    <>
+                        <BlobFirst fill={"#B6E5F3"} className={"absolute w-[20%] -top-3 left-0 rotate-90 group-hover:rotate-180 transition-transform"} />
+                        <BlobThird fill={"#E94C89"} className={"absolute w-[20%] -bottom-3 right-0 rotate-45 group-hover:rotate-0 transition-transform"} />
+                    </>
                 )
             }
         </button>

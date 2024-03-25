@@ -14,7 +14,7 @@ export default async function UsersLayout({
 
     return (
         <Sidebar>
-            <div className="h-full flex justify-start gap-4">
+            <div className="flex h-full gap-4">
                 <UserList items={users} />
                 {children}
             </div>

@@ -13,7 +13,7 @@ export default async function ConversationsLayout({
 
     return (
         <Sidebar>
-            <div className="h-full flex justify-start gap-4">
+            <div className="h-full flex gap-4">
                 <ConversationList 
                     users={users}
                     initialItems={conversations}

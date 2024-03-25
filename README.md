@@ -1,6 +1,6 @@
 <h1 align="center" id="title">Chatty App</h1>
 
-<p align="center"><img src="https://github.com/Parallite/chatty-app/public/logo.png" alt="project-image"></p>
+<p align="center"><img src="https://github.com/Parallite/chatty-app/blob/main/public/logo.png" alt="project-image"></p>
 
 <p id="description">Chatty App - это веб-приложение, реализованное с помощью Next.js. Представляет собой классический чат мессенджер с возможностью обмена сообщениями в режиме реального времени, аналогичен популярным платформам обмена сообщениями. Приложение включает в себя ряд функций и интеграций для улучшения коммуникации, упрощенной аутентификации пользователей и общего удобства использования. На текущий момент, приложение продолжает пополняться функционалом и доработкой. Это мое первое приложение, реализованное с Next.js.
 </p>
@@ -50,7 +50,7 @@ GOOGLE_CLIENT_SECRET=<your-google-client-secret>
 
 # next cloudinary реквизиты
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=xxxxxxxxx
-NEXT_PUBLIC_CLOUDINARY_CLOUD_PRESET=xxxxxxxxxx
+NEXT_PUBLIC_CLOUDINARY_CLOUD_PRESET=xxxxxxxx
 
 # pusher реквизиты
 PUSHER_APP_ID=00000000
@@ -84,7 +84,7 @@ NEXT_PUBLIC_PUSHER_APP_KEY=xxxxxxxxxxxxxxxxxxxxx
 
    - Зарегистрируйте учетную запись Cloudinary: [Cloudinary Sign-up](https://cloudinary.com/users/register/free)
    - Получите имя вашего облака с панели управления.
-   - Заполните `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` и `NEXT_PUBLIC_CLOUDINARY_CLOUD_PRESET` соответствующими данными Cloudinary.
+   - Заполните `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`и `NEXT_PUBLIC_CLOUDINARY_CLOUD_PRESET` соответствующими данными Cloudinary.
 
 10. **Pusher**
 
@@ -96,7 +96,7 @@ NEXT_PUBLIC_PUSHER_APP_KEY=xxxxxxxxxxxxxxxxxxxxx
 
 12. Теперь приложение полностью настроено 👍 и Вы можете начать его использовать, запустив консольную команду `npm run dev`.
 
-## :gem: Acknowledgements
+## :gem: Dependencies
 
 Зависимости, которые используются в Chatty App.
 

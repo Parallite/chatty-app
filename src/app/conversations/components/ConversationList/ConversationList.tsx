@@ -12,11 +12,22 @@ import { GroupChatModal } from '@/app/conversations/[conversationId]/components/
 import { User } from '@prisma/client';
 import { useSession } from 'next-auth/react';
 import { pusherClient } from '@/app/libs/pusher/client';
+import { motion } from 'framer-motion'
 import find from 'lodash/find';
 
 interface ConversationListProps {
     initialItems: FullConversationType[];
     users: User[]
+}
+
+const itemVariants = {
+    hidden: {
+        opacity: 0
+    },
+    visible: (custom: number) => ({
+        opacity: 1,
+        transition: { duration: 0.1, delay: custom }
+    })
 }
 
 export const ConversationList: FC<ConversationListProps> = ({
@@ -28,21 +39,21 @@ export const ConversationList: FC<ConversationListProps> = ({
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
     const router = useRouter();
     const { conversationId, isOpen } = useConversation();
-    
+
     const pusherKey = useMemo(() => {
         return session.data?.user?.email
     }, [session.data?.user?.email]);
 
     useEffect(() => {
         if (!pusherKey) {
-        return
-    }
+            return
+        }
 
         pusherClient.subscribe(pusherKey);
 
-        const newConversationHandler = (conversation: FullConversationType) => { 
+        const newConversationHandler = (conversation: FullConversationType) => {
             setItems((current) => {
-                if(find(current, {id: conversationId})) {
+                if (find(current, { id: conversationId })) {
                     return current
                 }
 
@@ -50,9 +61,9 @@ export const ConversationList: FC<ConversationListProps> = ({
             })
         };
 
-        const updateListHandler = (conversation: FullConversationType) => { 
+        const updateListHandler = (conversation: FullConversationType) => {
             setItems((current) => current.map((currentConversation) => {
-                if(currentConversation.id === conversation.id) {
+                if (currentConversation.id === conversation.id) {
                     return {
                         ...currentConversation,
                         messages: conversation.messages
@@ -65,7 +76,7 @@ export const ConversationList: FC<ConversationListProps> = ({
 
         const removeConversationHandler = (conversation: FullConversationType) => {
             setItems((current) => {
-                return [ ...current.filter((conv) => conv.id !== conversation.id)]
+                return [...current.filter((conv) => conv.id !== conversation.id)]
             })
 
             if (conversationId === conversation.id) {
@@ -92,26 +103,24 @@ export const ConversationList: FC<ConversationListProps> = ({
 
     return (
         <>
-            <GroupChatModal 
+            <GroupChatModal
                 users={users}
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
             />
             <aside
-                className={clsx(`bg-white shadow-inner shadow-purple-middle lg:rounded-xl lg:block overflow-y-auto block 
-                left-0
-                lg:w-96 
-                inset-y-0 
-                pb-20 
-                lg:pb-0 
-                lg:ml-20 
-                lg:left-10
+                className={clsx(`bg-white shadow-inner shadow-purple-middle lg:rounded-xl lg:block overflow-y-auto block left-0 lg:w-96 inset-y-0 grow-0
+                pb-20 lg:pb-0 lg:ml-20 lg:left-10
             `,
                     isOpen ? 'hidden' : 'block w-full left-0'
                 )}
             >
                 <div className='px-2'>
-                    <div className='flex justify-between mb-4 px-2 py-4 mt-2 bg-orange-middle rounded-lg shadow-md shadow-orange-dark relative overflow-hidden'>
+                    <motion.div
+                        initial={{ y: -100 }}
+                        animate={{ y: 0 }}
+                        transition={{ duration: 0.2, delay: 0.2 }}
+                        className='flex justify-between mb-4 px-2 py-4 mt-2 bg-orange-middle rounded-lg shadow-md shadow-orange-dark relative overflow-hidden'>
                         <div>
                             <div className='text-2xl font-bold text-white'>
                                 Messages
@@ -120,17 +129,28 @@ export const ConversationList: FC<ConversationListProps> = ({
                         </div>
                         <div
                             onClick={() => setIsModalOpen(true)}
-                            className='flex items-center justify-center p-1 w-8 h-8 rounded-full text-white cursor-pointer hover:text-white hover:bg-purple-middle hover:shadow-md hover:shadow-purple-middle transition'>
+                            className='rounded-[70%30%69%31%/43%28%72%57%] p-2 bg-purple-middle cursor-pointer text-white hover:scale-110 transition'>
                             <LuUserPlus2 size={20} />
                         </div>
-                    </div>
-                    {items.map((item) => (
-                        <ConversationBox
-                            key={item.id}
-                            data={item}
-                            selected={conversationId === item.id}
-                        />
-                    ))}
+                    </motion.div>
+                    <ul>
+                        {items.map((item, index) => (
+                            <motion.li
+                                key={item.id}
+                                variants={itemVariants}
+                                initial='hidden'
+                                animate="visible"
+                                exit="hidden"
+                                custom={(index + 10) * 0.1}
+                            >
+                                <ConversationBox
+                                    key={item.id}
+                                    data={item}
+                                    selected={conversationId === item.id}
+                                />
+                            </motion.li>
+                        ))}
+                    </ul>
                 </div>
             </aside>
         </>
