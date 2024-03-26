@@ -17,12 +17,11 @@ export const UserBox: FC<UserBoxProps> = ({ data }) => {
 
     const handleClick = useCallback(() => {
         setIsLoading(true)
-
         axios.post('/api/conversations', {
             userId: data.id
         })
             .then((data) => {
-                router.push(`/conversations/${data.data.id}`)
+                router.push(`/conversations/${data.data.id}`, { scroll: false })
             })
             .finally(() => setIsLoading(false))
     }, [data, router])
@@ -41,7 +40,7 @@ export const UserBox: FC<UserBoxProps> = ({ data }) => {
                 <div className='min-w-0 flex-1'>
                     <div className='focus:outline-none'>
                         <div className='flex justify-between items-center mb-1'>
-                            <p className='text-sm font-medium'>
+                            <p className='text-md font-medium'>
                                 {data.name}
                             </p>
                         </div>

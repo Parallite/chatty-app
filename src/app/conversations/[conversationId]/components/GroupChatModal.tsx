@@ -2,7 +2,9 @@ import { Button } from '@/app/components/Button';
 import { Input } from '@/app/components/Inputs';
 import { Modal } from '@/app/components/Modal';
 import { SelectChat } from '@/app/components/SelectChat';
-import { GroupChatFields } from '@/app/types/formTypes';
+import { GroupChatFields, GroupChatSelectValue } from '@/app/types/formTypes';
+import { groupChatFormSchema } from '@/app/types/validationShema';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { User } from '@prisma/client';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
@@ -30,6 +32,14 @@ export const GroupChatModal: FC<GroupChatModalProps> = ({
     const router = useRouter();
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
+    // добавить валидацию
+    const groupChatFormOptions = {
+        // resolver: yupResolver(groupChatFormSchema),
+        defaultValues: {
+            name: '',
+            members: []
+        }
+    };
     const {
         register,
         handleSubmit,
@@ -63,7 +73,7 @@ export const GroupChatModal: FC<GroupChatModalProps> = ({
     }
 
     const handleChange = (value: any) => {
-        setValue('members', value, { shouldValidate: true })    
+        setValue('members', value, { shouldValidate: true })
     }
 
     const selectOptions: OptionType[] = users.map((user) => ({
@@ -87,12 +97,15 @@ export const GroupChatModal: FC<GroupChatModalProps> = ({
                         </p>
                         <div className='mt-10 flex flex-col gap-y-8'>
                             <Input
-                                label="Name"
-                                id="name"
-                                required
                                 disabled={isLoading}
-                                register={register}
+                                label="Name"
+                                type="text"
+                                icon="name"
+                                id="name"
                                 errors={errors}
+                                required
+                                register={register}
+                                secondary
                             />
                             <SelectChat
                                 disabled={isLoading}
@@ -109,7 +122,7 @@ export const GroupChatModal: FC<GroupChatModalProps> = ({
                         disabled={isLoading}
                         onClick={onClose}
                         type='button'
-                        secondary
+                        danger
                     >
                         Cancel
                     </Button>

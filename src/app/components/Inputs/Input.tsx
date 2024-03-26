@@ -71,7 +71,7 @@ export const Input: FC<InputProps> = ({
                 text-sm 
                 font-medium 
                 leading-6`,
-                secondary ? "text-green-light" : "text-purple-middle" 
+                secondary ? "text-green-middle" : "text-purple-middle" 
             )}>
                 {label}
             </label>

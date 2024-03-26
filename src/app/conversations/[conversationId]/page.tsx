@@ -18,7 +18,7 @@ const ConversationId = async ({ params }: { params: IParams }) => {
     if (!conversation) {
         return (
             <div
-                className="h-full bg-white rounded-xl shadow-inner shadow-purple-middle grow">
+                className="h-full bg-white rounded-xl shadow-inner shadow-purple-middle grow overflow-hidden">
                 <div className="h-full flex flex-cols">
                     <EmptyState />
                 </div>
@@ -30,7 +30,7 @@ const ConversationId = async ({ params }: { params: IParams }) => {
         <div
             className="h-full bg-white lg:rounded-xl shadow-inner shadow-purple-middle lg:py-1 lg:px-1 grow"
         >
-            <div className="h-full flex flex-col">
+            <div className="h-full flex flex-col overflow-hidden">
                 <Header conversation={conversation} />
                 <Body initialMessages={messages} />
                 <Form />

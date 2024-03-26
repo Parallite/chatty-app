@@ -25,6 +25,7 @@ export const MobileItem: FC<MobileItemsProps> = ({
         <Link 
             onClick={onClick}
             href={href}
+            scroll={false}
             className={clsx(`
                 group
                 flex

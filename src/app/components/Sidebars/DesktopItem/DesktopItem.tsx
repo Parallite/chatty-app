@@ -27,6 +27,7 @@ export const DesktopItem: FC<DesktopItemProps> = ({
         <li onClick={handleClick}>
             <Link
                 href={href}
+                scroll={false}
                 className={clsx(`
                     group 
                     flex

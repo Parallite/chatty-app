@@ -1,4 +1,5 @@
 import { FieldValues, UseFormRegister } from "react-hook-form"
+import { User } from '@prisma/client';
 
 
 export type Variant = 'LOGIN' | 'REGISTER'
@@ -38,6 +39,11 @@ export interface SettingsFormFields extends FieldValues {
 }
 
 // Group chat
+
+export interface GroupChatSelectValue {
+    label: string
+    value: string
+}
 
 export interface GroupChatFields extends FieldValues {
     name: '',

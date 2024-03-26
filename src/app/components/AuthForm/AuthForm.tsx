@@ -28,7 +28,7 @@ export const AuthForm = () => {
 
     useEffect(() => {
         if (session?.status === 'authenticated') {
-            router.push('/users')
+            router.push('/users', { scroll: false })
         }
     }, [session?.status, router])
 
@@ -84,7 +84,7 @@ export const AuthForm = () => {
                     }
                     if (callback?.ok && !callback?.error) {
                         toast.success('Logged in!')
-                        router.push('/users')
+                        router.push('/users', { scroll: false })
                     }
                 })
                 .catch(() => toast.error("Ooops, something went wrong!"))
@@ -112,7 +112,7 @@ export const AuthForm = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
+            transition={{ delay: 0.4 }}
             className="mt-4 sm:mx-auto sm:w-full sm:max-w-md bg-white rounded-3xl relative z-10">
             <AuthLogo />
             <div className="px-4 py-8 sm:rounded-lg sm:px-10">
