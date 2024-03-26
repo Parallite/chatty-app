@@ -22,7 +22,7 @@ const itemVariants = {
 
 export const UserList: FC<UserListProps> = ({ items }) => {
     return (
-        <aside className='bg-white shadow-inner shadow-purple-middle lg:rounded-xl grow-0 lg:w-96 inset-y-0 pb-20 lg:pb-0 lg:ml-20 lg:block overflow-y-auto'>
+        <aside className='bg-white shadow-inner shadow-purple-middle lg:rounded-xl grow-0 lg:w-96 inset-y-0 pb-20 lg:pb-0 lg:ml-20 lg:block overflow-y-auto w-full'>
             <div className='px-2'>
                 <motion.div
                     initial={{ y: -100 }}

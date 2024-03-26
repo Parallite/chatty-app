@@ -129,7 +129,7 @@ export const ConversationList: FC<ConversationListProps> = ({
                         </div>
                         <div
                             onClick={() => setIsModalOpen(true)}
-                            className='rounded-[70%30%69%31%/43%28%72%57%] p-2 bg-purple-middle cursor-pointer text-white hover:scale-110 transition'>
+                            className='rounded-[70%30%69%31%/43%28%72%57%] p-2 bg-blue-dark cursor-pointer text-white hover:scale-110 outline-2 outline transition'>
                             <LuUserPlus2 size={20} />
                         </div>
                     </motion.div>

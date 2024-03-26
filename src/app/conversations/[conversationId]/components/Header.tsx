@@ -53,10 +53,10 @@ export const Header: FC<HeaderProps> = ({ conversation }) => {
                         <Avatar user={otherUser} />
                     )}
                     <div className="flex flex-col">
-                        <div>
+                        <div className="text-blue-dark font-medium">
                             {conversation.name || otherUser.name}
                         </div>
-                        <div className="text-sm font-light text-neutral-500">
+                        <div className="text-sm font-light text-purple-light">
                             {statusText}
                         </div>
                     </div>

@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { FC, useState } from "react";
 import { ImageModal } from "./ImageModal";
+import { motion } from "framer-motion";
 
 interface MessageBoxProps {
     data: FullMessageType;
@@ -41,27 +42,33 @@ export const MessageBox: FC<MessageBoxProps> = ({
 
     const message = clsx(
         'text-sm w-fit overflow-hidden',
-        isOwn ? 'bg-blue-light text-purple-dark' : 'bg-gray-100',
+        isOwn ? 'bg-green-light text-blue-dark' : 'bg-gray-100',
         data.image ? 'rounded-md p-0' : 'rounded-full py-2 px-3'
     )
 
     return (
-        <div className={container}>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1, duration: 0.2 }}
+            className={container}
+        >
             <div className={avatar}>
                 <Avatar user={data.sender} />
             </div>
             <div className={body}>
                 <div className="flex items-center gap-1">
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-purple-light">
                         {
                             isOwn ? 'You' : data.sender.name
                         }
                     </div>
-                    <div className="text-xs text-gray-400">
+                    <div className="text-xs text-purple-light">
                         {format(new Date(data.createdAt), 'p')}
                     </div>
                 </div>
-                <div className={message}>
+                <div
+                    className={message}>
                     <ImageModal
                         src={data.image}
                         isOpen={imageModalOpen}
@@ -88,11 +95,11 @@ export const MessageBox: FC<MessageBoxProps> = ({
                         )}
                 </div>
                 {isLast && isOwn && seenList.length > 0 && (
-                    <div className="text-xs font-light text-gray-500">
+                    <div className="text-xs font-light text-purple-light">
                         {`Seen by ${seenList}`}
                     </div>
                 )}
             </div>
-        </div>
+        </motion.div>
     )
 }

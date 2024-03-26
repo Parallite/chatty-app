@@ -26,7 +26,7 @@ export const SelectChat: FC<SelectChatProps> = ({
 }) => {
   return (
     <div className='z-[100]'>
-        <label className='block text-sm font-medium leading-6 text-green-light'>
+        <label className='block text-sm font-medium leading-6 text-green-middle'>
           {label}
         </label>
         <div className='mt-2'>
@@ -44,7 +44,7 @@ export const SelectChat: FC<SelectChatProps> = ({
             }),
           }}
           classNames={{
-            control: () => 'text-sm'
+            control: () => 'text-sm, text-blue-dark'
           }}
         />
         </div>

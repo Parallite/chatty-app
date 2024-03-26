@@ -20,7 +20,7 @@ export const ConversationBox: FC<ConversationBoxProps> = ({ data, selected }) =>
     const router = useRouter();
 
     const handleClick = useCallback(() => {
-        router.push(`/conversations/${data.id}`)
+        router.push(`/conversations/${data.id}`, { scroll: false })
     }, [data.id, router])
 
     const lastMessage = useMemo(() => {
@@ -65,16 +65,8 @@ export const ConversationBox: FC<ConversationBoxProps> = ({ data, selected }) =>
         <div
             onClick={handleClick}
             className={clsx(`
-            w-full
-            relative
-            flex
-            items-center
-            space-x-3
-            hover:bg-neutral-100
-            rounded-lg
-            transition
-            cursor-pointer
-            p-3
+            w-full relative flex items-center space-x-3 bg-white-primary p-3
+            hover:bg-blue-dark rounded-lg cursor-pointer text-blue-dark group transition
             `,
                 selected ? 'bg-neutral-100' : 'bg-white'
             )}
@@ -89,12 +81,12 @@ export const ConversationBox: FC<ConversationBoxProps> = ({ data, selected }) =>
             <div className='min-w-0 flex-1'>
                 <div className='focus:outline-none'>
                     <div className='flex justify-between items-center mb-1'>
-                        <p className='text-md font-medium text-gray-900'>
+                        <p className='text-md font-medium text-blue-dark group-hover:text-white transition'>
                             { data.name || otherUser.name }
                         </p>
                         {
                             lastMessage?.createdAt && (
-                                <p className='text-xs text-gray-400 font-light'>
+                                <p className='text-xs text-purple-light font-light group-hover:text-blue-light transition'>
                                     {
                                         format(new Date(lastMessage.createdAt), 'p')
                                     }
@@ -105,8 +97,9 @@ export const ConversationBox: FC<ConversationBoxProps> = ({ data, selected }) =>
                     <p className={clsx(`
                         truncate
                         text-sm
+                        group-hover:text-blue-light transition
                         `,
-                        hasSeen ? 'text-gray-500' : 'text-black font-medium'
+                        hasSeen ? 'text-gray-500' : 'text-purple-middle  font-medium'
                     )}>
                         {lastMessageText}
                     </p>
